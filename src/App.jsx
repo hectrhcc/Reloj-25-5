@@ -116,7 +116,7 @@ componentWillUnmount() {
   render(){
     return(
     <>
-        <div className="contenedor"><span >25 + 5 Clock</span>
+        <div className="contenedor"><p>25 + 5 Clock</p>
    <div id="break-label">Break Length
      <div className="flechas">
      <div  id="break-decrement" onClick={this.decrementBreak}><i class="fa fa-arrow-down fa-sm"></i></div>
@@ -134,20 +134,18 @@ componentWillUnmount() {
 </div>
  <div className="marco">
   <div  id="timer-label">{this.state.name}</div>
- 
-</div>
-  <div id="time-left">{this.state.session}:{this.state.seconds}  
-  <div id="start_stop" onClick={this.startstop}>
-    <i class="fa fa-play fa-2x"></i>      
-      <i class="fa fa-pause fa-2x"></i>
-  </div>
-  <div id="reset" onClick={this.reset}><i class="fa fa-refresh fa-2x"></i></div>
+   <div id="time-left"> {this.state.session}:{this.state.seconds}</div> 
     </div>
+   
+  <span id="start_stop" onClick={this.startstop}>
+    <i class="fa fa-play fa-sm"></i>      
+      <i class="fa fa-pause fa-sm"></i>
+  </span>
+  <span id="reset" onClick={this.reset}><i class="fa fa-refresh fa-sm"></i></span>
         </div>
         </>
     )
   }
-  
 }
 
 ReactDOM.render(<Reloj />,document.getElementById('root'));

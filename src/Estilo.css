@@ -23,22 +23,27 @@ body{
   padding-bottom:29px;
 }
 
-span {
+p{
   font-size:55px;
+margin-bottom:0px;
+}
+span {
+  font-size:25px;
 }
 
 #break-label{
   display:inline-block;
-  font-size:27px;
-  width:170px;
-  margin-right:40px;
+  font-size:24px;
+  width:154px;
+  margin-right:20px;
+  
 }
 
 #session-label{
   display:inline-block;
-  width:187px;
-  font-size:27px;
-  margin-left:40px;
+  width:169px;
+  font-size:24px;
+  margin-left:26px;
   margin-top:23px;
 }
 
@@ -47,18 +52,7 @@ span {
   font-size:26px;
   justify-content:center;
   margin-top:30px; 
-  margin-bottom:12px;
 }
-
-#session-length{
-
-}
-
-#break-length{
-  
-
-}
-
 .fa-arrow-down{
 display:inline;
   margin:15px;
