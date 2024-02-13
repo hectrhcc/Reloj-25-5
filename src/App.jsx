@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import './Estilo.css'
-
 let tiempo=0;
 class Reloj extends React.Component{
   constructor(props){
@@ -10,7 +9,8 @@ class Reloj extends React.Component{
     break:5,
     session:25,
     seconds:0,
-    temporizador:false
+    temporizador:false,
+    name:'Session'
     }
      this.handleClick = this.handleClick.bind(this);
      this.incrementBreak = this.incrementBreak.bind(this)
@@ -30,7 +30,7 @@ class Reloj extends React.Component{
    decrementBreak() {
      if (this.state.break>1){
     this.setState(state =>({
-       break: state.break-1 
+       break:state.break-1 
     }));
    }
   }
@@ -38,23 +38,26 @@ class Reloj extends React.Component{
     this.setState({
        break: 5,
        session:25,
-       seconds:0
+       seconds:0,
+      name:'Session'
     });
   }
   incrementSession() {
     if(this.state.session<60){
     this.setState(state =>({
-       session: state.session+1
+       session:state.session+1
     }));
-   }
+  }
   }
   
    decrementSession() {
      if(this.state.session>1){
     this.setState(state =>({
-       session: state.session-1
+       session:state.session-1
     }));
-   }
+   }else if(this.state.session<0){
+    ;
+   }  
   }
   
    startstop() {
@@ -73,7 +76,7 @@ class Reloj extends React.Component{
       tiempo = setInterval(() => {
       this.setState((prevState) => ({
         seconds: prevState.seconds === 0 ? 59 : prevState.seconds - 1,
-        session: prevState.seconds === 0 ? prevState.session - 1 : prevState.session
+        //session: prevState.seconds === 0 ? prevState.session - 1 : prevState.session
       }));
     }, 1000);
   }
@@ -81,11 +84,11 @@ class Reloj extends React.Component{
 }
       
   componentDidMount() {
-  if(this.state.temporizador){  
+  if(this.state.temporizador ){  
   tiempo = setInterval(() => {
     this.setState((prevState) => ({ 
     seconds: prevState.seconds === 0 ? 59 : prevState.seconds - 1,
-    session: prevState.seconds === 0 ? prevState.session - 1 : prevState.session  
+    //session: prevState.seconds === 0 ? prevState.session - 1 : prevState.session  
     }))
     
   }, 1000);
@@ -98,10 +101,10 @@ componentWillUnmount() {
   clearInterval(tiempo);
     }
 }
+
+
   
   handleClick(){
-    
-  
     this.setState(prevState => ({
     clicked: true
     })
@@ -130,10 +133,10 @@ componentWillUnmount() {
 </div>          
 </div>
  <div className="marco">
-  <div  id="timer-label"> </div>
- {this.state.session}:{this.state.seconds}  
+  <div  id="timer-label">{this.state.name}</div>
+ 
 </div>
-  <div id="time-left">
+  <div id="time-left">{this.state.session}:{this.state.seconds}  
   <div id="start_stop" onClick={this.startstop}>
     <i class="fa fa-play fa-2x"></i>      
       <i class="fa fa-pause fa-2x"></i>
@@ -142,7 +145,6 @@ componentWillUnmount() {
     </div>
         </div>
         </>
-    
     )
   }
   
