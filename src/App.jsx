@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './Estilo.css'
+/*(template literals) de ES6 en combinación con el método padStart() para formatear los valores de this.state.session y this.state.seconds.
+El método padStart() se aplica a las cadenas de texto convertidas usando String() para asegurar que tengan una longitud mínima de 2 caracteres, añadiendo ceros a la izquierda */
 let tiempo=0;
 class Reloj extends React.Component{
   constructor(props){
@@ -41,6 +43,7 @@ class Reloj extends React.Component{
        seconds:0,
       name:'Session'
     });
+      clearInterval(tiempo);//detiene el tiempo
   }
   incrementSession() {
     if(this.state.session<60){
@@ -49,7 +52,6 @@ class Reloj extends React.Component{
     }));
   }
   }
-  
    decrementSession() {
      if(this.state.session>1){
     this.setState(state =>({
@@ -59,38 +61,65 @@ class Reloj extends React.Component{
     ;
    }  
   }
-  
-   startstop() {
-       
-     if(this.state.temporizador){//si es verdadero pasa a falso
-     this.setState({ temporizador:false});
-       clearInterval(tiempo);
-       }
-    else {
-       this.setState({temporizador:true}); //si es falso pasa a verdadero
-        if(this.state.seconds==0){
-       this.setState((state) => ({
-        seconds: 59,
-        session: state.session-1
-      }));
-      tiempo = setInterval(() => {
-      this.setState((prevState) => ({
-        seconds: prevState.seconds === 0 ? 59 : prevState.seconds - 1,
-        //session: prevState.seconds === 0 ? prevState.session - 1 : prevState.session
-      }));
-    }, 1000);
+  startstop() {
+  if(this.state.temporizador){
+    this.pauseTimer(); //pausa
+  } else {
+    this.resumeTimer();//reanuda
   }
-      }
+
+  this.setState(prev => ({
+    temporizador: !prev.temporizador
+  }));
 }
-      
+
+pauseTimer() {
+  clearInterval(tiempo);
+}
+
+resumeTimer() {
+  if(this.state.seconds === 0) {
+    this.resetCount();
+  }
+if(this.state.session>=0){
+// Llamar método de inicio
+    this.startTimer();
+}
+}
+
+startTimer() {
+
+  tiempo = setInterval(() => {
+
+    // Lógica de decremento
+
+    if(this.state.session=== 0 && this.state.seconds===0) {
+      clearInterval(tiempo);
+    } else{
+       this.setState(prevState => ({
+      seconds: prevState.seconds === 0 ? 59 : prevState.seconds - 1,
+      session: prevState.seconds === 0 ? prevState.session - 1 : prevState.session
+    }));
+    }
+
+  }, 1000);
+
+}  
+
+resetCount() {
+  if(this.state.session>=0){
+  this.setState({
+    seconds: 59,
+    session: this.state.seconds === 0 ? this.state.session - 1 : this.state.session
+  });  
+}    
+}
   componentDidMount() {
   if(this.state.temporizador ){  
   tiempo = setInterval(() => {
     this.setState((prevState) => ({ 
     seconds: prevState.seconds === 0 ? 59 : prevState.seconds - 1,
-    //session: prevState.seconds === 0 ? prevState.session - 1 : prevState.session  
-    }))
-    
+    }))  
   }, 1000);
  }
     
@@ -102,17 +131,12 @@ componentWillUnmount() {
     }
 }
 
-
-  
   handleClick(){
     this.setState(prevState => ({
     clicked: true
     })
 );   
   }
-  
-
-  
   render(){
     return(
     <>
@@ -134,7 +158,9 @@ componentWillUnmount() {
 </div>
  <div className="marco">
   <div  id="timer-label">{this.state.name}</div>
-   <div id="time-left"> {this.state.session}:{this.state.seconds}</div> 
+   <div id="time-left">
+  {`${String(this.state.session).padStart(2, '0')}:${String(this.state.seconds).padStart(2, '0')}`}
+</div>
     </div>
    
   <span id="start_stop" onClick={this.startstop}>
