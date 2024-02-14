@@ -13,8 +13,7 @@ class Reloj extends React.Component{
     session:25,
     seconds:0,
     temporizador:false,
-    name:'Session',
-    activo:true
+    name:'Session'
     }
      this.handleClick = this.handleClick.bind(this);
      this.incrementBreak = this.incrementBreak.bind(this)
@@ -25,7 +24,6 @@ class Reloj extends React.Component{
     this.startstop = this.startstop.bind(this)
   }
    incrementBreak() {
-     if(this.state.activo){
      if (this.state.break < 60){
     this.setState((state) =>({
        break: state.break+1 
@@ -34,16 +32,13 @@ class Reloj extends React.Component{
      ;
    }
   }
-  }
    decrementBreak() {
-     if(this.state.activo){
      if (this.state.break>1){
     this.setState((state) =>({
        break:state.break-1 
     }));
    }else if(this.state.session<=0){
     ;
-   }  
      }
   }
    reset() {
@@ -58,7 +53,6 @@ class Reloj extends React.Component{
     this.audioRef.current.currentTime = 0;
   }
   incrementSession() {
-    if(this.state.activo){
     if(this.state.session<60){
     this.setState((state) =>({
        session:state.session+1
@@ -67,9 +61,7 @@ class Reloj extends React.Component{
      ;
   }
   }
-  }
    decrementSession() {
-     if(this.state.activo){
      if(this.state.session>1){
     this.setState((state) =>({
        session:state.session-1
@@ -77,7 +69,6 @@ class Reloj extends React.Component{
    }else if(this.state.session<=0){
     ;
    }  
-  }
    }
   startstop() {
     this.state.activo=false;
