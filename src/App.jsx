@@ -86,14 +86,17 @@ class Reloj extends React.Component{
   } else {
     this.resumeTimer();//reanuda
   }
+
   this.setState(prev => ({
     temporizador: !prev.temporizador
   }));
 }
+
 pauseTimer() {
    this.state.activo=true;
   clearInterval(tiempo);
 }
+
 resumeTimer() {
   if(this.state.seconds === 0) {
     this.resetCount();
@@ -103,14 +106,15 @@ if(this.state.session>=0){
     this.startTimer();
 }
 }
+
 startTimer() {
   tiempo = setInterval(() => {
     if(this.state.session===0 && this.state.seconds===0) {
        this.audioRef.current.play();
       this.setState((state) =>({
        name:'Break' ,
-        seconds: state.seconds === 0 ? 59 : state.seconds - 1,
-        session: state.seconds === 0 ? state.break-1 : state.break
+        seconds: state.seconds === 0 ? 0 : state.seconds - 1,
+        session: state.break // 00:00 - (05:00) - 04:59
     }));
     } else{
        this.setState(prevState => ({
@@ -121,6 +125,7 @@ startTimer() {
   }, 1000);
 
 }  
+
 resetCount() {
    if (this.state.name === 'Session') {
     if (this.state.session >= 0) {
@@ -175,6 +180,7 @@ componentWillUnmount() {
   clearInterval(tiempo);
     }
 }
+
   handleClick(){
     this.setState(prevState => ({
     clicked: true
@@ -192,6 +198,7 @@ componentWillUnmount() {
      <div  id="break-increment" onClick={this.incrementBreak}><i class="fa fa-arrow-up fa-sm"></i></div>
      </div>
      </div>  
+
 <div  id="session-label">Session Length
   <div className="flechas">
   <div  id="session-decrement" onClick={this.decrementSession}><i class="fa fa-arrow-down fa-sm"></i></div>
