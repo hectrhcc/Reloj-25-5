@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './Estilo.css'
+
 class Reloj extends React.Component {
   constructor(props) {
     super(props);
