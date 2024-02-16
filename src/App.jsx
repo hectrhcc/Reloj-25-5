@@ -60,9 +60,6 @@ class Reloj extends React.Component {
   };
 
   increment(e, timerType) {
-    /* Adds one minute to a timer.  Can reach but not go above 60.
-    */
-    //if timer is running then no time can be added
     if (this.state.timerOn === true) {
       return;
     }
@@ -86,7 +83,6 @@ class Reloj extends React.Component {
   };
 
   decrement(e, timerType){
-    //Removes one minute from a timer.  Timer cannot equal zero.
     if (this.state.timerOn === true) {
       return;
     }
@@ -187,5 +183,4 @@ const TimerSetting = (props) => {
   </>
   );
 };
-
 ReactDOM.render(<Reloj />,document.getElementById('root'));
