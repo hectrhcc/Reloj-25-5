@@ -6,21 +6,21 @@ body{
 .contenedor{
   display:block;
   position: absolute;
-  top: 50%;  
+  top: 35%;  
   left: 50%;
   justify-content:center;
   text-align:center;
   transform: translate(-50%, -50%);
-  padding:90px;
+  padding:20px;
 }
 .marco{
   border: 7px solid #13353A;
   border-radius:49px;
   margin:0 auto;
-  width:57%;
-  height:150px;
-  font-size:70px;
-  padding-bottom:29px;
+  width:16%;
+  height:70px;
+  position:static;
+  margin-top:248px
 }
 
 p{
@@ -33,17 +33,16 @@ span {
 
 #break-label{
   display:inline-block;
-  font-size:24px;
+  font-size:20px;
   width:154px;
-  margin-right:20px;
-  
+  margin-right:10px;  
 }
 
 #session-label{
   display:inline-block;
   width:169px;
-  font-size:24px;
-  margin-left:26px;
+  font-size:20px;
+  margin-left:10px;
   margin-top:23px;
 }
 
@@ -51,7 +50,7 @@ span {
   display:flex;
   font-size:26px;
   justify-content:center;
-  margin-top:30px; 
+  margin-top:30px;
 }
 .fa-arrow-down{
 display:inline;
@@ -73,11 +72,37 @@ display:inline;
 }
 
 #time-left{
-  display:flex; 
-  justify-content:center;
-  width:100%;
+display:inline;
+  position: absolute;
+  top:83%;  
+  left:48%;
+  margin-top:30px;
 }
 
 .fa-play, .fa-pause, .fa-refresh{
   margin:8px;
+}
+#start_stop{
+  display:inline;
+  position: absolute;
+  top:83%;  
+  left:42%;
+  margin-top:50px;
+}
+
+#reset{
+  display:inline;
+  position: absolute;
+  top:83%;  
+  left:55%;
+  margin-top:50px;
+}
+
+#timer-label{
+  width:10%;
+  display:inline;
+  position: absolute;
+  top:80%;  
+  left:45%;
+  margin-top:0px;
 }
