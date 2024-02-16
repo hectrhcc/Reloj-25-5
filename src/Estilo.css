@@ -6,7 +6,7 @@ body{
 .contenedor{
   display:block;
   position: absolute;
-  top: 50%;  
+  top: 40%;  
   left: 50%;
   justify-content:center;
   text-align:center;
@@ -58,16 +58,26 @@ display:inline;
  margin-bottom:32px;
   margin-left:36px;
   float:left;
-  jusfify-content:center;
+  justify-content:center;
   align-items: center;
 }
 
 #time-left{
+  width: 115px;
+  border: 7px solid #13353A;
+  border-radius:49px;
 display:inline;
   position: absolute;
-  top:83%;  
-  left:48%;
-  margin-top:30px;
+  top:60%; 
+  left: 50%;
+transform: translateX(-50%);
+margin: 0 auto;
+  justify-content:center;
+  align-items: center;
+  height:45px;
+  padding:25px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 50px;
 }
 
 .fa-play, .fa-pause, .fa-refresh{
@@ -76,24 +86,25 @@ display:inline;
 #start_stop{
   display:inline;
   position: absolute;
-  top:83%;  
-  left:42%;
+  top:70%;  
+  left:43%;
   margin-top:50px;
 }
 
 #reset{
   display:inline;
   position: absolute;
-  top:83%;  
-  left:55%;
+  top:70%;  
+  left:53%;
   margin-top:50px;
 }
 
 #timer-label{
+  
   width:10%;
   display:inline;
   position: absolute;
-  top:80%;  
-  left:45%;
+  top:62%;  
+  left:46%;
   margin-top:0px;
 }

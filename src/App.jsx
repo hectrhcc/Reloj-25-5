@@ -1,6 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './Estilo.css'
+
 class Reloj extends React.Component {
   constructor(props) {
     super(props);
@@ -159,7 +158,7 @@ const TimerDisplay = (props) => {
       <i className="fa fa-pause fa-sm"></i></span>
         <span  id="reset" onClick={props.reset}><i className="fa fa-refresh fa-sm"/></span>
       </div>
- <audio src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" id="beep" ref={this.audioRef}></audio>
+      <audio id="beep" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" />
     </>
   );
 };
