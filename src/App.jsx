@@ -31,26 +31,27 @@ class Reloj extends React.Component {
     beep.currentTime = 0;
   };
 
-  startStopTimer() {
-    if (this.state.timerOn === true) {
-      this.setState({ timerOn: false});
-      clearInterval(this.timer);
-    } else if (this.state.timerOn === false) {
+  startStopTimer() { //se activa cuando hacemos clic
+    if (this.state.timerOn === true) { //si esta corriendo el clic pausa el tiempo
+      this.setState({ timerOn: false});//el estado pasa a falso
+      clearInterval(this.timer);//se detiene el tiempo
+    } else if (this.state.timerOn === false) {//si esta en pausa el clic reanuda 
       this.setState({ timerOn: true });
       if (this.state.timer > 0) {
         this.timer = setInterval(() => {
           let currTimer = this.state.timer;
           let breakStatus = this.state.break;
           if (currTimer > 0) {
-            currTimer -= 1;
-          } else if (currTimer === 0 && breakStatus === false) {
-            currTimer = this.state.breakTime * 60;
-            breakStatus = true;
-          } else if (currTimer === 0 && breakStatus === true) {
-            currTimer = this.state.sessionTime * 60;
-            breakStatus = false;
+            currTimer -= 1; 
+            //los minutos y segundos se trabajan juntos currTimer 00:00
+          } else if (currTimer === 0 && breakStatus === false) {//primer cambio
+            currTimer = this.state.breakTime * 60;//aqui pasa de session a break
+            breakStatus = true; //estatus de break esta activo
+          } else if (currTimer === 0 && breakStatus === true) { //cambio otra vez
+            currTimer = this.state.sessionTime * 60;//aqui pasa de break a session
+            breakStatus = false;//para volver a pasar  de session a break
           }
-          this.setState({
+          this.setState({//actualiza el estado
             timer: currTimer,
             break: breakStatus
           });
@@ -60,17 +61,17 @@ class Reloj extends React.Component {
   };
 
   increment(e, timerType) {
-    if (this.state.timerOn === true) {
+    if (this.state.timerOn === true) {//si el tiempo esta activo no hace nada
       return;
     }
 
     switch (timerType) {
       case 'session':
-        if (this.state.sessionTime < 60) {
-          let newSession = this.state.sessionTime + 1;
-          this.setState({
-            sessionTime: newSession,
-            timer: newSession * 60
+        if (this.state.sessionTime < 60) {//si cumple que no pasa mayor a 60
+          let newSession = this.state.sessionTime + 1;//incrementa y guarda
+          this.setState({//actualiza el estado
+            sessionTime: newSession, //sessiontime+1
+            timer: newSession * 60 //timer con 1 minuto+
           });
         };
         break;
@@ -88,11 +89,11 @@ class Reloj extends React.Component {
     }
     switch (timerType) {
       case 'session':
-        if (this.state.sessionTime > 1) {
+        if (this.state.sessionTime > 1) {//si  cumple que no es menor que 1
           let newSession = this.state.sessionTime - 1;
           this.setState({
-            sessionTime: newSession,
-            timer: newSession * 60
+            sessionTime: newSession,// sessionTime--
+            timer: newSession * 60 //timer con 1 min -
           });
         };
         break;
@@ -142,7 +143,7 @@ const TimerDisplay = (props) => {
     <>
         <div className="marco">
       <div id="timer-label">
-        {props.break ? "Break" : "Session"}
+        {props.break ? "Break" : "Session"} 
       </div>
        
       <div  id="time-left">
