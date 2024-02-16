@@ -6,21 +6,12 @@ body{
 .contenedor{
   display:block;
   position: absolute;
-  top: 35%;  
+  top: 50%;  
   left: 50%;
   justify-content:center;
   text-align:center;
   transform: translate(-50%, -50%);
   padding:20px;
-}
-.marco{
-  border: 7px solid #13353A;
-  border-radius:49px;
-  margin:0 auto;
-  width:16%;
-  height:70px;
-  position:static;
-  margin-top:248px
 }
 
 p{
@@ -94,7 +85,7 @@ display:inline;
   display:inline;
   position: absolute;
   top:83%;  
-  left:55%;
+  left:60%;
   margin-top:50px;
 }
 
